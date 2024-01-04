@@ -1,0 +1,1 @@
+熟悉华为OpenGauss的操作以及将Postgrep与mybatis结合
