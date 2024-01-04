@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.furing.book.mapper.OrderMapper">
+
+    <resultMap id="orderMap" type="com.furing.book.pojo.Order">
+        <id column="o_id" property="orderId"/>
+        <result column="o_bid" property="bookId"/>
+        <result column="o_uid" property="userId"/>
+        <result column="o_status" property="status"/>
+        <result column="o_money" property="money"/>
+        <result column="o_amount" property="amount"/>
+    </resultMap>
+
+    <select id="getAllOrders" resultMap="orderMap">
+        select *
+        from t_order
+    </select>
+
+    <select id="getOwnOrders" resultMap="orderMap">
+        select *
+        from t_order
+        where o_uid = #{useId}
+    </select>
+
+    <select id="getOrder" resultMap="orderMap">
+        select *
+        from t_order
+        where o_id = #{orderId}
+    </select>
+
+    <update id="updateOrder">
+        update t_order
+        set o_status = #{status}
+        where o_id = #{orderId}
+    </update>
+
+    <!-- 回填主键-->
+    <insert id="insertOrder" useGeneratedKeys="true" keyProperty="orderId">
+        insert into t_order (o_uid, o_bid, o_money, o_amount, o_status)
+        values (#{userId}, #{bookId}, #{money}, #{amount}, #{status})
+    </insert>
+</mapper>

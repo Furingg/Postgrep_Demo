@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    druid:
+#       driver-class-name: com.mysql.cj.jdbc.Driver
+#       url: jdbc:mysql://localhost:3306/db_book?characterEncoding=UTF-8
+#       username: root
+#       password: 2021gdut
+       initialSize: 5
+       minIdle: 5
+       maxActive: 20
+       maxWait: 60000
+      driver-class-name: org.postgresql.Driver
+      url: jdbc:postgresql://192.168.56.102:26000/book
+      username: my_root
+      password: my_root@123
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

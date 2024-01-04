@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.furing.book.mapper.BookMapper">
+
+    <resultMap id="bookMap" type="com.furing.book.pojo.Book">
+        <id column="b_id" property="bookId"/>
+        <result column="b_name" property="name"/>
+        <result column="b_type" property="type"/>
+        <result column="b_writer" property="writer"/>
+        <result column="b_score" property="score"/>
+        <result column="b_amount" property="amount"/>
+        <result column="b_value" property="value"/>
+    </resultMap>
+
+    <select id="getAllBooks" resultMap="bookMap">
+        select *
+        from t_book
+    </select>
+
+    <insert id="addBook" useGeneratedKeys="true" keyProperty="bookId">
+        insert into t_book (b_name, b_type, b_writer, b_score, b_value, b_amount)
+        values (#{name}, #{type}, #{writer}, #{score}, #{value}, #{amount})
+    </insert>
+
+    <select id="getBook" resultMap="bookMap">
+        select *
+        from t_book
+        where b_id = #{bookId}
+    </select>
+
+    <update id="updateBook">
+        update t_book
+        set b_amount = #{amount}
+        where b_id = #{bookId}
+    </update>
+</mapper>
